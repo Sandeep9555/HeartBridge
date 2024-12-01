@@ -23,7 +23,7 @@ const Body = () => {
       if (err.response?.status === 401) {
         navigate("/login");
       }
-      console.error("Error fetching user :", err.response || err.message);
+      console.error("Error fetching user:", err.response || err.message);
     }
   };
 
@@ -32,11 +32,19 @@ const Body = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
+      {/* Fixed navbar */}
       <NavBar />
-      <Outlet />
+
+      {/* Main content */}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
+      {/* Sticky footer */}
       <Footer />
     </div>
   );
 };
+
 export default Body;

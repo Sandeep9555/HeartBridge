@@ -215,7 +215,7 @@ const Messages = () => {
       </div>
 
       {/* Chat Window */}
-      <div className="chat-window w-2/3 p-6 bg-white rounded-lg shadow-xl flex flex-col">
+      <div className="chat-window w-2/3 p-6 bg-white rounded-lg shadow-xl flex flex-col h-full">
         <h2 className="text-3xl mb-6 font-semibold text-gray-800">
           {selectedConnectionId
             ? `Chat with ${selectedConnection?.firstName} ${selectedConnection?.lastName}`
@@ -271,7 +271,7 @@ const Messages = () => {
           <div className="typing-indicator text-gray-500">Typing...</div>
         )}
 
-        <div className="input-area flex mt-4">
+        <div className="input-area flex items-center p-4 border-t">
           <textarea
             className="flex-grow p-2 border rounded-lg"
             rows="2"
