@@ -2,6 +2,9 @@
 
 HeartBridge is a dating application designed to help users find connections and engage in real-time conversations. It includes key features such as user profiles, feed, connection requests, and a fully integrated chat system powered by Socket.io. This application is built using the MERN stack (MongoDB, Express.js, React, Node.js) with advanced features like JWT authentication, real-time communication, and validation.
 
+https://github.com/user-attachments/assets/83ab3a6e-4a58-4afd-b466-5b11e21b8bdb
+
+
 ## Features
 
 - **User Authentication**: Secure login and signup with JWT token generation and cookie-based authentication.
