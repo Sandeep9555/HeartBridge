@@ -7,7 +7,7 @@ import {
   setConnections,
 } from "../utils/messageSlice";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BACKEND_URL } from "../utils/constants";
 import { io } from "socket.io-client";
 
 const Messages = () => {
@@ -24,7 +24,7 @@ const Messages = () => {
   const [onlineStatus, setOnlineStatus] = useState({}); // Track online status of users
   const [isTyping, setIsTyping] = useState(false); // Typing indicator
 
-  const socket = io(BASE_URL, { withCredentials: true });
+  const socket = io(BACKEND_URL, { withCredentials: true });
 
   useEffect(() => {
     if (user?._id) {

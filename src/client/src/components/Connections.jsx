@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BACKEND_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../utils/conectionSlice";
@@ -11,7 +11,7 @@ const Connections = () => {
   // Fetch Connections from the API
   const fetchConnections = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/user/connections", {
+      const res = await axios.get(BACKEND_URL + "/user/connections", {
         withCredentials: true,
       });
       dispatch(addConnections(res.data.data));

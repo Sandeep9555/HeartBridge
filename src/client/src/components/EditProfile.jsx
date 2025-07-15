@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { BACKEND_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -28,7 +28,7 @@ const EditProfile = ({ user }) => {
     setError("");
     try {
       const res = await axios.patch(
-        BASE_URL + "/profile/edit",
+        BACKEND_URL + "/profile/edit",
         {
           firstName,
           lastName,

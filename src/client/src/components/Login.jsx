@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../utils/constants";
+import { BACKEND_URL } from "../utils/constants";
 import SignUp from "./SignUp";
 
 const Login = () => {
@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        BASE_URL + "/login",
+        BACKEND_URL + "/login",
         { emailId, password },
         { withCredentials: true }
       );

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { BASE_URL } from "../utils/constants";
+import { BACKEND_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import { useEffect, useState } from "react";
 import { setSelectedConnection } from "../utils/messageSlice"; // Import the action to select a connection
@@ -16,7 +16,7 @@ const NavBar = () => {
   // Handle logout
   const handleLogout = async () => {
     try {
-      await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
+      await axios.post(BACKEND_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
       navigate("/login", { replace: true }); // Added replace: true to avoid going back to the previous page
     } catch (err) {
