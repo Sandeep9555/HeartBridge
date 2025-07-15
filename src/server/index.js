@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.BASE_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   })
@@ -32,7 +32,7 @@ app.use(
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.BASE_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   },
@@ -45,6 +45,11 @@ app.use("/", requestRouter);
 app.use("/", userRouter);
 app.use("/", messageRouter);
 
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 // Socket.io Event Handlers
 io.on("connection", (socket) => {
   // User goes online
@@ -137,6 +142,7 @@ io.on("connection", (socket) => {
 connectDB()
   .then(() => {
     console.log("Database connection established...");
+
     server.listen(PORT, () => {
       console.log(`Server is successfully listening on port ${PORT}...`);
     });
