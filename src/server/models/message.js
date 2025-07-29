@@ -36,5 +36,5 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-messageSchema.index({ sender: 1, receiver: 1, content: 1 }, { unique: true });
+//messageSchema.index({ sender: 1, receiver: 1, content: 1 }, { unique: true });
 module.exports = mongoose.model("Message", messageSchema);

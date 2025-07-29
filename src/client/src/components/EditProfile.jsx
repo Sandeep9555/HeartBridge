@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../utils/constants";
+import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -28,7 +28,7 @@ const EditProfile = ({ user }) => {
     setError("");
     try {
       const res = await axios.patch(
-        BACKEND_URL + "/profile/edit",
+        `${BASE_URL}/profile/edit`,
         {
           firstName,
           lastName,
@@ -41,130 +41,161 @@ const EditProfile = ({ user }) => {
       );
       dispatch(addUser(res?.data?.data));
       setShowToast(true);
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
+      setTimeout(() => setShowToast(false), 3000);
     } catch (err) {
-      setError(err.response.data);
+      setError(err.response?.data || "Something went wrong.");
     }
   };
 
   return (
     <>
-      <div className="flex justify-center my-10">
-        <div className="card bg-base-100 w-full max-w-3xl shadow-xl rounded-lg">
-          <div className="card-body">
-            <h2 className="card-title text-center text-2xl font-semibold mb-5 text-purple-800">
-              Edit Your Profile
-            </h2>
-            <div className="space-y-5">
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">
-                    First Name
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  value={firstName}
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setFirstName(e.target.value)}
-                  onBlur={validateForm}
-                />
-              </div>
+      <div className="bg-gradient-to-br bg-white-1000 rounded-3xl from-pink-100 to-pink-100 min-h-screen flex justify-center items-center p-4">
+        <div className="bg-white shadow-xl rounded-3xl w-full max-w-2xl p-8 border border-pink-100">
+          <h2 className="text-3xl font-bold text-center text-pink-600 mb-8">
+            Edit Your Profile
+          </h2>
 
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">
-                    Last Name
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  value={lastName}
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setLastName(e.target.value)}
-                  onBlur={validateForm}
-                />
-              </div>
+          <div className="space-y-5">
+            {/* First Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                First Name
+              </label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                onBlur={validateForm}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+            </div>
 
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">
-                    Photo URL
-                  </span>
-                </label>
-                <input
-                  type="url"
-                  value={photoUrl}
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setPhotoUrl(e.target.value)}
-                  onBlur={validateForm}
-                  placeholder="https://example.com/photo.jpg"
-                />
-              </div>
+            {/* Last Name */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Last Name
+              </label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                onBlur={validateForm}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+            </div>
 
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">Age</span>
-                </label>
-                <input
-                  type="number"
-                  value={age}
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setAge(e.target.value)}
-                  onBlur={validateForm}
-                />
-              </div>
+            {/* Profile Photo Upload (Cloudinary) */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Profile Photo
+              </label>
 
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">Gender</span>
-                </label>
-                <input
-                  type="text"
-                  value={gender}
-                  className="input input-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setGender(e.target.value)}
-                  onBlur={validateForm}
-                />
-              </div>
+              {photoUrl && (
+                <div className="mb-2">
+                  <img
+                    src={photoUrl}
+                    alt="Profile Preview"
+                    className="h-24 w-24 object-cover rounded-full"
+                  />
+                </div>
+              )}
 
-              <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text text-sm font-medium">About</span>
-                </label>
-                <textarea
-                  value={about}
-                  className="textarea textarea-bordered w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setAbout(e.target.value)}
-                  onBlur={validateForm}
-                />
-              </div>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files[0];
+                  if (!file) return;
 
-              {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                  const formData = new FormData();
+                  formData.append("image", file);
 
-              <div className="card-actions justify-center mt-6">
-                <button
-                  className={`btn ${
-                    isFormValid ? "btn-primary" : "btn-disabled"
-                  } w-full rounded-lg`}
-                  onClick={saveProfile}
-                  disabled={!isFormValid}
-                >
-                  Save Profile
-                </button>
-              </div>
+                  try {
+                    const res = await axios.post(
+                      `${BASE_URL}/upload/image`,
+                      formData,
+                      {
+                        withCredentials: true,
+                        headers: { "Content-Type": "multipart/form-data" },
+                      }
+                    );
+
+                    setPhotoUrl(res.data.url);
+                  } catch (err) {
+                    console.error("Image upload failed:", err);
+                    setError("Image upload failed");
+                  }
+                }}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+            </div>
+
+            {/* Age */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Age
+              </label>
+              <input
+                type="number"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+                onBlur={validateForm}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+            </div>
+
+            {/* Gender */}
+            <div>
+              <label className="block text-sm rounded-2xl font-medium text-gray-700 mb-1">
+                Gender
+              </label>
+              <input
+                type="text"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                onBlur={validateForm}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+            </div>
+
+            {/* About */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                About
+              </label>
+              <textarea
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+                onBlur={validateForm}
+                className="w-full px-4 py-2 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+                rows="4"
+              />
+            </div>
+
+            {/* Error Message */}
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+
+            {/* Save Button */}
+            <div className="flex justify-center">
+              <button
+                onClick={saveProfile}
+                disabled={!isFormValid}
+                className={`w-full py-2 px-4 rounded-2xl text-white font-medium transition duration-300 ${
+                  isFormValid
+                    ? "bg-pink-400 hover:bg-pink-600"
+                    : "bg-gray-300 cursor-not-allowed"
+                }`}
+              >
+                Save Profile
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {showToast && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>Profile saved successfully.</span>
-          </div>
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-pink-500 text-white px-5 py-2 rounded-lg shadow-lg z-50">
+          ✅ Profile updated successfully.
         </div>
       )}
     </>

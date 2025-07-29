@@ -1,16 +1,31 @@
 const express = require("express");
 const profileRouter = express.Router();
-
+const User = require("../models/user");
 const { userAuth } = require("../middlewares/auth");
 const { validateEditProfileData } = require("../utils/validation");
 
 profileRouter.get("/profile/view", userAuth, async (req, res) => {
   try {
     const user = req.user;
-    console.log(user);
     res.send(user);
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
+  }
+});
+
+profileRouter.get("/profile/public/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select(
+      "firstName lastName photoUrl age gender about"
+    );
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.json(user);
+  } catch (err) {
+    res.status(400).send("ERROR: " + err.message);
   }
 });
 

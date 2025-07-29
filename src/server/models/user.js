@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
+      // required: true,
       enum: {
         values: ["male", "female", "other"],
         message: `{VALUE} is not a valid gender type`,
@@ -53,6 +54,7 @@ const userSchema = new mongoose.Schema(
     },
     photoUrl: {
       type: String,
+      //required: true,
       default: "https://geographyandyou.com/images/user-profile.png",
       validate(value) {
         if (!validator.isURL(value)) {
@@ -62,6 +64,7 @@ const userSchema = new mongoose.Schema(
     },
     about: {
       type: String,
+      // required: true,
       default: "This is a default about of the user!",
     },
     skills: {

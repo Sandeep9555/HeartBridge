@@ -1,20 +1,20 @@
 import axios from "axios";
-import { BACKEND_URL } from "../utils/constants";
+import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequest } from "../utils/requestSlice";
 import { useEffect, useState } from "react";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa"; // Icon library
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true); // State to track loading
+  const [loading, setLoading] = useState(true);
 
   const reviewRequest = async (status, _id) => {
     try {
       setLoading(true);
       await axios.post(
-        BACKEND_URL + "/request/review/" + status + "/" + _id,
+        BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );
@@ -45,86 +45,81 @@ const Requests = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="loader"></div> {/* Loading Spinner */}
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-pink-100 via-pink-100 to-pink-100">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
     );
   }
 
   if (!requests || requests.length === 0) {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-gradient-to-br from-pink-100 via-pink-100 to-pink-100">
         <div className="text-center my-10 px-4 flex-grow">
-          <h1 className="font-bold text-white text-3xl mb-8">
+          <h1 className="font-bold text-4xl text-gray-800 mb-6">
             Connection Requests
           </h1>
-          <h1 className="text-xl font-semibold my-10 text-gray-600">
-            No New Users Found! Please Accept Requests First
-          </h1>
+          <p className="text-lg text-gray-600">
+            No new requests at the moment 🕊️
+          </p>
         </div>
-
-        {/* Footer stays at the bottom */}
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="text-center my-10 px-4 flex-grow">
-        <h1 className="font-bold text-white text-3xl mb-8">
-          Connection Requests
-        </h1>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-pink-100 via-pink-100 to-pink-100 py-10 px-6">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">
+        Connection Requests
+      </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {requests.map((request) => {
-            const { _id, firstName, lastName, photoUrl, age, gender, about } =
-              request.fromUserId;
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {requests.map((request) => {
+          const { _id, firstName, lastName, photoUrl, age, gender, about } =
+            request.fromUserId;
 
-            return (
-              <div
-                key={_id}
-                className="transition-all transform hover:scale-105 duration-300 bg-base-300 p-6 rounded-lg shadow-lg hover:shadow-xl"
-              >
-                <div className="flex justify-between items-center">
-                  <div>
-                    <img
-                      alt="user photo"
-                      className="w-24 h-24 rounded-full object-cover"
-                      src={photoUrl}
-                    />
-                  </div>
-                  <div className="ml-4 text-left">
-                    <h2 className="font-bold text-xl text-gray-800">
-                      {firstName + " " + lastName}
-                    </h2>
-                    {age && gender && (
-                      <p className="text-gray-500">
-                        {age}, {gender}
-                      </p>
-                    )}
-                    <p className="text-gray-600 text-sm mt-2">{about}</p>
-                  </div>
-                  <div className="flex flex-col justify-between items-center">
-                    <button
-                      className="btn btn-error mx-2 my-2 flex items-center justify-center text-white hover:bg-red-600"
-                      onClick={() => reviewRequest("rejected", _id)}
-                    >
-                      <FaTimesCircle className="mr-2" />
-                      Reject
-                    </button>
-                    <button
-                      className="btn btn-success mx-2 my-2 flex items-center justify-center text-white hover:bg-green-600"
-                      onClick={() => reviewRequest("accepted", _id)}
-                    >
-                      <FaCheckCircle className="mr-2" />
-                      Accept
-                    </button>
-                  </div>
+          return (
+            <div
+              key={_id}
+              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-105"
+            >
+              <div className="flex items-start space-x-4">
+                <img
+                  src={photoUrl}
+                  alt="user"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-indigo-200"
+                />
+                <div className="flex-1">
+                  <h2 className="text-xl font-semibold text-gray-800">
+                    {firstName} {lastName}
+                  </h2>
+                  <p className="text-gray-500 text-sm">
+                    {age && gender ? `${age}, ${gender}` : ""}
+                  </p>
+                  <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+                    {about}
+                  </p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+
+              <div className="mt-4 flex justify-between">
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-full"
+                  onClick={() => reviewRequest("rejected", _id)}
+                >
+                  <FaTimesCircle />
+                  Reject
+                </button>
+                <button
+                  className="flex items-center gap-2 px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white text-sm font-medium rounded-full"
+                  onClick={() => reviewRequest("accepted", _id)}
+                >
+                  <FaCheckCircle />
+                  Accept
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
