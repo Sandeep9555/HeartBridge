@@ -1,4 +1,4 @@
- #HeartBridge – Dating Application
+ # HeartBridge – Dating Application
 
 **HeartBridge** is a modern, production-ready dating platform built with the **MERN stack**, enabling users to find meaningful connections and chat instantly. Designed for scalability, it features **JWT-based authentication**, **Redis-optimized real-time communication**, and robust **RESTful APIs** — all wrapped in a sleek, responsive UI.
 
