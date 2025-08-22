@@ -6,7 +6,20 @@
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue)]([https://your-live-link.com)](https://heartbridges-frontend.onrender.com)
 
 ## 📸 Preview
-![App Screenshot](./screenshot.png)
+## 📸 Screenshots
+
+### 🔐 Login Page
+<img src="./screenshot/login.png" width="600" />
+
+### 🏠 Home Feed
+<img src="./screenshot/home.png" width="600" />
+
+### 💬 Real-time Chat
+<img src="./screenshot/chat.png" width="600" />
+
+### 👤 Profile Page
+<img src="./screenshot/profile.png" width="600" />
+
 
 ---
 
