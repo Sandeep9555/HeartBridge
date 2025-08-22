@@ -1,21 +1,28 @@
-# HeartBridge - A Dating Application
+ # HeartBridge – Dating Application
 
-HeartBridge is a dating application designed to help users find connections and engage in real-time conversations. It includes key features such as user profiles, feed, connection requests, and a fully integrated chat system powered by Socket.io. This application is built using the MERN stack (MongoDB, Express.js, React, Node.js) with advanced features like JWT authentication, real-time communication, and validation.
+**HeartBridge** is a modern, production-ready dating platform built with the **MERN stack**, enabling users to find meaningful connections and chat instantly. Designed for scalability, it features **JWT-based authentication**, **Redis-optimized real-time communication**, and robust **RESTful APIs** — all wrapped in a sleek, responsive UI.
 
-## Features
+## 🚀 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)]([https://your-live-link.com)](https://heartbridges-frontend.onrender.com)
 
-- **User Authentication**: Secure login and signup with JWT token generation and cookie-based authentication.
-- **User Profiles**: Create and edit user profiles with options to add personal details, photos, and more.
-- **Feed**: Users can see others' profiles in the feed and send connection requests.
-- **Connection Requests**: Send, accept, or reject connection requests from other users.
-- **Real-time Chat**: Chat with other users in real-time using Socket.io.
-- **Profile Editing**: Users can edit their profiles, including personal information and photos.
-- **Forgot Password**: Password reset functionality with email validation.
-- **Notifications**: Get notified when receiving a connection request or message.
-- **API Endpoints**: A set of RESTful APIs for user authentication, profile management, connection requests, and more.
+## 📸 Preview
+![App Screenshot](./screenshot.png)
 
-## Technologies Used
+---
 
+## 🚀 Key Features
+
+- 🔐 **Secure Authentication**: JWT-based login/signup with cookie sessions and bcrypt hashing.
+- 👤 **User Profiles**: Create/edit profiles with photos and personal info.
+- 📰 **Smart Feed**: Explore profiles and send personalized connection requests.
+- 💌 **Connection Requests**: Send, accept, reject — with real-time status updates.
+- 💬 **Real-Time Chat**: Instant messaging powered by **Socket.io + Redis**, with delivery status and presence tracking.
+- 🛠 **Profile Management**: Edit profile data and manage account settings.
+- 🔁 **Password Reset**: Secure recovery with email verification.
+- 🔔 **Live Notifications**: Alerts for messages and connection activity.
+- ⚙️ **Optimized REST APIs**: Clean, scalable APIs for user, chat, and feed management.
+
+---
 - **Frontend**: React.js, Vite, Tailwind CSS, Daisy UI, React Router, Redux Toolkit
 - **Backend**: Node.js, Express.js, MongoDB (with Mongoose), JWT, Socket.io
 - **Authentication**: JWT (JSON Web Tokens), bcrypt for password hashing, cookie-parser for cookie management
