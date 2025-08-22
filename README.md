@@ -7,8 +7,6 @@
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 ### 💬 Chat
 ![Chat](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/chat.png)
 
