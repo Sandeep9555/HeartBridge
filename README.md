@@ -5,20 +5,20 @@
 ## 🚀 Live Demo
 [![Live Demo](https://img.shields.io/badge/Live-Demo-blue)]([https://your-live-link.com)](https://heartbridges-frontend.onrender.com)
 
-## 📸 Preview
 ## 📸 Screenshots
 
 ### 🔐 Login Page
-<img src="./screenshot/login.png" width="600" />
+![Login](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/login.png)
 
 ### 🏠 Home Feed
-<img src="./screenshot/home.png" width="600" />
+![Home](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/home.png)
 
-### 💬 Real-time Chat
-<img src="./screenshot/chat.png" width="600" />
+### 💬 Chat
+![Chat](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/chat.png)
 
-### 👤 Profile Page
-<img src="./screenshot/profile.png" width="600" />
+### 👤 Profile
+![Profile](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/profile.png)
+
 
 
 ---
