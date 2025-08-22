@@ -2,6 +2,12 @@
 
 **HeartBridge** is a modern, production-ready dating platform built with the **MERN stack**, enabling users to find meaningful connections and chat instantly. Designed for scalability, it features **JWT-based authentication**, **Redis-optimized real-time communication**, and robust **RESTful APIs** — all wrapped in a sleek, responsive UI.
 
+## 🚀 Live Demo
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)]([https://your-live-link.com)](https://heartbridges-frontend.onrender.com)
+
+## 📸 Preview
+![App Screenshot](./screenshot.png)
+
 ---
 
 ## 🚀 Key Features
