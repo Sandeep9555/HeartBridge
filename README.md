@@ -7,18 +7,25 @@
 
 ## 📸 Screenshots
 
-### 🔐 Login Page
-![Login](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/login.png)
-
-### 🏠 Home Feed
-![Home](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/home.png)
+## 📸 Screenshots
 
 ### 💬 Chat
 ![Chat](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/chat.png)
 
-### 👤 Profile
-![Profile](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/profile.png)
+### 🔗 Connection
+![Connection](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/conection.png)
 
+### 📩 Connection Request
+![Connection Request](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/connection%20request.png)
+
+### 📰 Feed
+![Feed](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/feed.png)
+
+### 📑 Menu
+![Menu](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/menu.png)
+
+### 👤 Profile
+![Profile](https://raw.githubusercontent.com/Sandeep9555/HeartBridge/main/src/screenshot/profile.js.png)
 
 
 ---
